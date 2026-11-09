@@ -106,6 +106,26 @@ export default function Header() {
                 >
                   {item.label}
                 </button>
+                {isOpen && item.columns ? (
+                  <div className="mega mega-inline" role="region" aria-label={`${item.label} menu`}>
+                    {item.columns.map((column) => (
+                      <div className="mega-col" key={column.title}>
+                        <ul className="mega-list">
+                          <li className="mega-heading">
+                            <span>{column.title}</span>
+                          </li>
+                          {column.links.map((link) => (
+                            <li key={link.label}>
+                              <Link to={link.to} onClick={closeMenus}>
+                                <span>{link.label}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             )
           })}
@@ -171,7 +191,7 @@ export default function Header() {
       </div>
 
       {active?.columns ? (
-        <div className="mega-wrap" role="region" aria-label={`${active.label} menu`}>
+        <div className="mega-wrap mega-wrap-desktop" role="region" aria-label={`${active.label} menu`}>
           <div className={`mega cols-${active.columns.length}`}>
             <button
               type="button"
