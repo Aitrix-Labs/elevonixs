@@ -3232,8 +3232,90 @@ ul {
 
 .contact-form label.has-error input,
 .contact-form label.has-error textarea,
-.contact-form label.has-error select {
+.contact-form label.has-error select,
+.contact-form label.has-error .form-select-trigger {
   border-color: #c62828;
+}
+
+.contact-form label:has(.form-select.is-open) {
+  position: relative;
+  z-index: 30;
+}
+.form-select {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.form-select.is-open {
+  z-index: 30;
+}
+.form-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font: inherit;
+  font-weight: 400;
+  padding: 12px 14px;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+  background: #fff;
+  color: #222;
+  text-align: left;
+  cursor: pointer;
+}
+.form-select-trigger .is-placeholder {
+  color: #777;
+}
+.form-select-trigger svg {
+  width: 12px;
+  height: 8px;
+  flex-shrink: 0;
+  color: #555;
+  transition: transform 0.15s ease;
+}
+.form-select.is-open .form-select-trigger,
+.form-select-trigger:focus-visible {
+  outline: 2px solid rgba(7, 102, 209, 0.25);
+  border-color: var(--blue);
+}
+.form-select.is-invalid .form-select-trigger {
+  border-color: #c62828;
+}
+.form-select.is-open .form-select-trigger svg {
+  transform: rotate(180deg);
+}
+.form-select-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 40;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  max-height: min(320px, 50vh);
+  overflow-y: auto;
+}
+.form-select-option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #222;
+  font: inherit;
+  font-weight: 400;
+  text-align: left;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.form-select-option:hover,
+.form-select-option.is-active {
+  background: #e8f1fc;
+  color: #0766d1;
 }
 
 .field-error {

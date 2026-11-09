@@ -1,6 +1,7 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { asset } from '../asset'
+import FormSelect from '../components/FormSelect'
 
 type FormState = {
   firstName: string
@@ -334,20 +335,16 @@ export default function ContactPage() {
                   <span>
                     Topic <em>*</em>
                   </span>
-                  <select
+                  <FormSelect
                     name="topic"
                     value={values.topic}
-                    onChange={(event) => setField('topic', event.target.value)}
+                    onChange={(value) => setField('topic', value)}
                     onBlur={() => onBlur('topic')}
-                    aria-invalid={Boolean(touched.topic && errors.topic)}
-                  >
-                    <option value="">Select a topic</option>
-                    {topics.map((topic) => (
-                      <option value={topic} key={topic}>
-                        {topic}
-                      </option>
-                    ))}
-                  </select>
+                    placeholder="Select a topic"
+                    aria-label="Select a topic"
+                    invalid={Boolean(touched.topic && errors.topic)}
+                    options={topics.map((topic) => ({ value: topic, label: topic }))}
+                  />
                   {touched.topic && errors.topic ? (
                     <span className="field-error">{errors.topic}</span>
                   ) : null}
